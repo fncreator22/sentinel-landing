@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sentinel — a guardrail agent for AI coding agents</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ============ NAV ============ -->
+  <header class="site-header">
+    <div class="logo">◆ Sagar Mahajan</div>
+    <nav>
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="https://github.com/fncreator22/sentinel" target="_blank">GitHub</a>
+      <a href="https://github.com/fncreator22/sentinel" target="_blank" class="star-badge">
+        <img src="https://img.shields.io/github/stars/fncreator22/sentinel?style=social" alt="GitHub stars" width="90" height="20">
+      </a>
+    </nav>
+  </header>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="work">
+    <div class="hero-inner">
+      <p class="eyebrow">Project 01 — Agent Safety</p>
+      <h1 class="hero-title">
+        <span class="line">Every action,</span>
+        <span class="line">reviewed <em>before</em> it runs.</span>
+      </h1>
+      <p class="hero-sub">
+        Sentinel sits between an AI coding agent and your machine — checking
+        every command, file write, and git push before it executes.
+        Built fully self-hosted: nothing leaves your computer.
+      </p>
+
+      <!-- Signature terminal animation: a dangerous command gets intercepted live -->
+      <div class="terminal" id="hero-terminal">
+        <div class="terminal-bar">
+          <span class="dot red"></span><span class="dot amber"></span><span class="dot green"></span>
+          <span class="terminal-label">agent-session</span>
+        </div>
+        <div class="terminal-body">
+          <span class="prompt">$</span>
+          <span id="typed-command" class="typed"></span><span class="cursor">▌</span>
+          <div id="verdict-stamp" class="verdict-stamp"></div>
+        </div>
+      </div>
+
+      <div class="hero-cta">
+        <a href="https://github.com/fncreator22/sentinel" class="btn-primary">Get it on GitHub</a>
+        <a href="#pipeline" class="btn-secondary">See how it works ↓</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROBLEM ============ -->
+  <section class="problem reveal">
+    <p class="section-eyebrow">The problem</p>
+    <h2>Agents don't just write code anymore. They run it.</h2>
+    <p class="problem-text">
+      A coding agent that can execute commands can also run the wrong one —
+      a hallucinated <code>rm -rf</code>, a force-push it wasn't asked for,
+      a config change outside the task's scope. Most teams build agents that
+      <em>do</em> things. Sentinel is built to <em>watch</em> them.
+    </p>
+  </section>
+
+  <!-- ============ PIPELINE (signature scroll animation) ============ -->
+  <section class="pipeline" id="pipeline">
+    <p class="section-eyebrow">How it works</p>
+    <h2 class="reveal">Three checks, cheapest and most reliable first.</h2>
+
+    <div class="pipeline-track">
+      <div class="pipeline-stage" data-stage="1">
+        <div class="stage-number">01</div>
+        <h3>Rule Engine</h3>
+        <p>Instant, deterministic pattern matching. No model, no ambiguity —
+          known-dangerous commands are blocked immediately.</p>
+      </div>
+      <div class="pipeline-stage" data-stage="2">
+        <div class="stage-number">02</div>
+        <h3>Trained Classifier</h3>
+        <p>A small model trained from scratch on our own labeled data —
+          fast, explainable, and self-hosted.</p>
+      </div>
+      <div class="pipeline-stage" data-stage="3">
+        <div class="stage-number">03</div>
+        <h3>Local LLM Review</h3>
+        <p>Only for genuinely ambiguous cases — runs on a model on your own
+          machine via Ollama. Nothing sent externally.</p>
+      </div>
+
+      <!-- animated packet that travels through the pipeline on scroll -->
+      <div class="packet" id="packet">rm -rf ./build</div>
+      <svg class="pipeline-line" viewBox="0 0 1000 40" preserveAspectRatio="none">
+        <path id="pipeline-path" d="M 20 20 L 980 20" stroke="#2a2f3d" stroke-width="2" fill="none"/>
+      </svg>
+    </div>
+
+    <div class="verdict-row reveal">
+      <div class="verdict-card block">
+        <span class="verdict-tag">BLOCK</span>
+        <p>Matched a hard-blocked pattern. Stopped instantly.</p>
+      </div>
+      <div class="verdict-card review">
+        <span class="verdict-tag">REVIEW</span>
+        <p>Ambiguous — escalated to the local model for a closer look.</p>
+      </div>
+      <div class="verdict-card allow">
+        <span class="verdict-tag">ALLOW</span>
+        <p>Clearly safe. Executes immediately.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DASHBOARD SHOWCASE ============ -->
+  <section class="showcase">
+    <p class="section-eyebrow reveal">The control panel</p>
+    <h2 class="reveal">Built for people who don't want to touch config files.</h2>
+    <p class="showcase-text reveal">
+      Every rule is editable live — including regex patterns — with changes
+      taking effect immediately, no restart. Test any action against the
+      real pipeline before you trust it, register multiple MCP servers, and
+      export your whole setup as a shareable config.
+    </p>
+
+    <div class="gallery">
+      <div class="gallery-item reveal">
+        <img src="assets/dashboard-rules.jpeg" alt="Rule editor showing block and allow patterns with regex support">
+        <p class="gallery-caption"><strong>Rule Editor</strong> — block/allow patterns, regex support, live saves.</p>
+      </div>
+      <div class="gallery-item reveal">
+        <img src="assets/dashboard-overview.jpeg" alt="Overview tab with a live action tester and decision feed">
+        <p class="gallery-caption"><strong>Try an Action</strong> — test any command against the real pipeline before you trust it.</p>
+      </div>
+      <div class="gallery-item reveal">
+        <img src="assets/dashboard-model-settings.jpeg" alt="Model settings showing local Ollama model or API model choice">
+        <p class="gallery-caption"><strong>Model Settings</strong> — local by default; an API fallback is available if you choose it.</p>
+      </div>
+      <div class="gallery-item reveal">
+        <img src="assets/dashboard-mcp-servers.jpeg" alt="MCP servers registry showing connected guardrail servers">
+        <p class="gallery-caption"><strong>MCP Servers</strong> — register and monitor multiple guardrail instances.</p>
+      </div>
+      <div class="gallery-item reveal">
+        <img src="assets/dashboard-export.jpeg" alt="Export and share panel with one-click MCP client config copy">
+        <p class="gallery-caption"><strong>Export & Share</strong> — one click copies a ready-to-paste config for Claude Desktop, Cursor, or CodeX.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TECH STACK ============ -->
+  <section class="stack reveal">
+    <p class="section-eyebrow">Built with</p>
+    <div class="stack-grid">
+      <span>Python</span>
+      <span>FastAPI</span>
+      <span>scikit-learn</span>
+      <span>Ollama</span>
+      <span>SQLite</span>
+      <span>MCP</span>
+      <span>Vanilla JS</span>
+    </div>
+    <p class="stack-note">
+      No agent framework dependency. Local by default for the model stage —
+      an optional hosted API fallback exists for those who want it, but
+      nothing is required to leave your machine.
+    </p>
+  </section>
+
+  <!-- ============ CTA ============ -->
+  <section class="cta-final reveal" id="about">
+    <h2>Clone it. Run it. Nothing to sign up for.</h2>
+    <p>That's the whole point.</p>
+    <a href="https://github.com/fncreator22/sentinel" class="btn-primary large">Get it on GitHub</a>
+  </section>
+
+  <footer class="site-footer">
+    <p>Built for a hackathon. More projects coming.</p>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
