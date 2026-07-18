@@ -3,185 +3,124 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sentinel — a guardrail agent for AI coding agents</title>
+<title>Sentinel - guardrails for AI coding agents</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-  <!-- ============ NAV ============ -->
   <header class="site-header">
-    <div class="logo">◆ Sagar Mahajan</div>
+    <div class="logo">&#9670; Sagar Mahajan</div>
     <nav>
       <a href="#work">Work</a>
       <a href="#about">About</a>
-      <a href="https://github.com/fncreator22/sentinel" target="_blank">GitHub</a>
-      <a href="https://github.com/fncreator22/sentinel" target="_blank" class="star-badge">
-        <img src="https://img.shields.io/github/stars/fncreator22/sentinel?style=social" alt="GitHub stars" width="90" height="20">
+      <a href="https://github.com/fncreator22/sentinel-mcp" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://github.com/fncreator22/sentinel-mcp" target="_blank" rel="noopener" class="star-badge">
+        <img src="https://img.shields.io/github/stars/fncreator22/sentinel-mcp?style=social" alt="GitHub stars for Sentinel" width="90" height="20">
       </a>
     </nav>
   </header>
 
-  <!-- ============ HERO ============ -->
   <section class="hero" id="work">
     <div class="hero-inner">
-      <p class="eyebrow">Project 01 — Agent Safety</p>
+      <p class="eyebrow">Sentinel MCP - agent safety</p>
       <h1 class="hero-title">
-        <span class="line">Every action,</span>
-        <span class="line">reviewed <em>before</em> it runs.</span>
+        <span class="line">Build safer</span>
+        <span class="line">agent-driven <em>workflows.</em></span>
       </h1>
-      <p class="hero-sub">
-        Sentinel sits between an AI coding agent and your machine — checking
-        every command, file write, and git push before it executes.
-        Built fully self-hosted: nothing leaves your computer.
-      </p>
-
-      <!-- Signature terminal animation: a dangerous command gets intercepted live -->
+      <p class="hero-sub">Sentinel is a three-stage guardrail for LLM-powered coding assistants. It reviews commands, file writes, and git operations before execution, with an interactive control panel for rules, models, MCP servers, and audit decisions.</p>
       <div class="terminal" id="hero-terminal">
-        <div class="terminal-bar">
-          <span class="dot red"></span><span class="dot amber"></span><span class="dot green"></span>
-          <span class="terminal-label">agent-session</span>
-        </div>
-        <div class="terminal-body">
-          <span class="prompt">$</span>
-          <span id="typed-command" class="typed"></span><span class="cursor">▌</span>
-          <div id="verdict-stamp" class="verdict-stamp"></div>
-        </div>
+        <div class="terminal-bar"><span class="dot red"></span><span class="dot amber"></span><span class="dot green"></span><span class="terminal-label">agent-session</span></div>
+        <div class="terminal-body"><span class="prompt">$</span><span id="typed-command" class="typed"></span><span class="cursor">&#9608;</span><div id="verdict-stamp" class="verdict-stamp"></div></div>
       </div>
-
       <div class="hero-cta">
-        <a href="https://github.com/fncreator22/sentinel" class="btn-primary">Get it on GitHub</a>
-        <a href="#pipeline" class="btn-secondary">See how it works ↓</a>
+        <a href="https://github.com/fncreator22/sentinel-mcp" class="btn-primary">Get it on GitHub</a>
+        <a href="#pipeline" class="btn-secondary">See how it works</a>
       </div>
     </div>
   </section>
 
-  <!-- ============ PROBLEM ============ -->
   <section class="problem reveal">
     <p class="section-eyebrow">The problem</p>
-    <h2>Agents don't just write code anymore. They run it.</h2>
-    <p class="problem-text">
-      A coding agent that can execute commands can also run the wrong one —
-      a hallucinated <code>rm -rf</code>, a force-push it wasn't asked for,
-      a config change outside the task's scope. Most teams build agents that
-      <em>do</em> things. Sentinel is built to <em>watch</em> them.
-    </p>
+    <h2>Agents do not just write code anymore. They run it.</h2>
+    <p class="problem-text">A coding agent that can execute commands can also run the wrong one: a hallucinated <code>rm -rf /</code>, a force-push it was not asked for, or a request that exports user data. Sentinel reviews the action before it reaches your machine.</p>
+    <div class="outcomes" aria-label="Example Sentinel decisions">
+      <span><code>rm -rf /</code><b class="block-text">BLOCK</b></span>
+      <span><code>git push --force</code><b class="block-text">BLOCK</b></span>
+      <span><code>curl .../export-users</code><b class="review-text">REVIEW</b></span>
+      <span><code>git status</code><b class="allow-text">ALLOW</b></span>
+    </div>
   </section>
 
-  <!-- ============ PIPELINE (signature scroll animation) ============ -->
   <section class="pipeline" id="pipeline">
     <p class="section-eyebrow">How it works</p>
     <h2 class="reveal">Three checks, cheapest and most reliable first.</h2>
-
     <div class="pipeline-track">
-      <div class="pipeline-stage" data-stage="1">
-        <div class="stage-number">01</div>
-        <h3>Rule Engine</h3>
-        <p>Instant, deterministic pattern matching. No model, no ambiguity —
-          known-dangerous commands are blocked immediately.</p>
-      </div>
-      <div class="pipeline-stage" data-stage="2">
-        <div class="stage-number">02</div>
-        <h3>Trained Classifier</h3>
-        <p>A small model trained from scratch on our own labeled data —
-          fast, explainable, and self-hosted.</p>
-      </div>
-      <div class="pipeline-stage" data-stage="3">
-        <div class="stage-number">03</div>
-        <h3>Local LLM Review</h3>
-        <p>Only for genuinely ambiguous cases — runs on a model on your own
-          machine via Ollama. Nothing sent externally.</p>
-      </div>
-
-      <!-- animated packet that travels through the pipeline on scroll -->
+      <div class="pipeline-stage" data-stage="1"><div class="stage-number">01</div><h3>Rules Engine</h3><p>Instant pattern matching blocks known-dangerous actions and allows known-safe ones without a model call.</p></div>
+      <div class="pipeline-stage" data-stage="2"><div class="stage-number">02</div><h3>Trained Classifier</h3><p>An offline classifier resolves confident middle-ground decisions quickly with an explainable risk signal.</p></div>
+      <div class="pipeline-stage" data-stage="3"><div class="stage-number">03</div><h3>LLM Reviewer</h3><p>Only genuinely ambiguous actions reach the final reviewer, using local Ollama by default or a configured provider.</p></div>
       <div class="packet" id="packet">rm -rf ./build</div>
-      <svg class="pipeline-line" viewBox="0 0 1000 40" preserveAspectRatio="none">
-        <path id="pipeline-path" d="M 20 20 L 980 20" stroke="#2a2f3d" stroke-width="2" fill="none"/>
-      </svg>
+      <svg class="pipeline-line" viewBox="0 0 1000 40" preserveAspectRatio="none"><path id="pipeline-path" d="M 20 20 L 980 20" stroke="#2a2f3d" stroke-width="2" fill="none"/></svg>
     </div>
-
     <div class="verdict-row reveal">
-      <div class="verdict-card block">
-        <span class="verdict-tag">BLOCK</span>
-        <p>Matched a hard-blocked pattern. Stopped instantly.</p>
-      </div>
-      <div class="verdict-card review">
-        <span class="verdict-tag">REVIEW</span>
-        <p>Ambiguous — escalated to the local model for a closer look.</p>
-      </div>
-      <div class="verdict-card allow">
-        <span class="verdict-tag">ALLOW</span>
-        <p>Clearly safe. Executes immediately.</p>
-      </div>
+      <div class="verdict-card block"><span class="verdict-tag">BLOCK</span><p>Matched a hard-blocked pattern. Stopped instantly.</p></div>
+      <div class="verdict-card review"><span class="verdict-tag">REVIEW</span><p>Ambiguous action escalated for context-aware review.</p></div>
+      <div class="verdict-card allow"><span class="verdict-tag">ALLOW</span><p>Clearly safe action approved without delay.</p></div>
     </div>
   </section>
 
-  <!-- ============ DASHBOARD SHOWCASE ============ -->
+  <section class="features">
+    <p class="section-eyebrow reveal">What the dashboard gives you</p>
+    <h2 class="reveal">Guardrails you can inspect, tune, and trust.</h2>
+    <div class="feature-grid">
+      <article class="feature-card reveal"><h3>Rules engine</h3><p>Instant block and allow patterns, including regex support.</p></article>
+      <article class="feature-card reveal"><h3>Offline classifier</h3><p>A fast local Stage 2 decision layer for routine actions.</p></article>
+      <article class="feature-card reveal"><h3>LLM escalation</h3><p>Escalate only ambiguous actions to the Stage 3 reviewer.</p></article>
+      <article class="feature-card reveal"><h3>MCP support</h3><p>Connect through stdio for local tools or SSE for web clients.</p></article>
+      <article class="feature-card reveal"><h3>Live dashboard</h3><p>Watch pipeline stages, transport status, and guardrail metrics.</p></article>
+      <article class="feature-card reveal"><h3>Audit log</h3><p>Review live ALLOW, BLOCK, and REVIEW decisions in one feed.</p></article>
+      <article class="feature-card reveal"><h3>Configurable models</h3><p>Choose local Ollama models or an API provider from Model Settings.</p></article>
+      <article class="feature-card reveal"><h3>Local-first privacy</h3><p>Keep action text on your machine when using a local model.</p></article>
+    </div>
+  </section>
+
   <section class="showcase">
     <p class="section-eyebrow reveal">The control panel</p>
-    <h2 class="reveal">Built for people who don't want to touch config files.</h2>
-    <p class="showcase-text reveal">
-      Every rule is editable live — including regex patterns — with changes
-      taking effect immediately, no restart. Test any action against the
-      real pipeline before you trust it, register multiple MCP servers, and
-      export your whole setup as a shareable config.
-    </p>
-
+    <h2 class="reveal">The same control panel your agent workflow runs through.</h2>
+    <p class="showcase-text reveal">The dashboard shows the three-stage pipeline in real time, lets you test an action, manage safety rules, select a model, register MCP servers, and export a ready-to-paste connection configuration.</p>
     <div class="gallery">
-      <div class="gallery-item reveal">
-        <img src="assets/dashboard-rules.jpeg" alt="Rule editor showing block and allow patterns with regex support">
-        <p class="gallery-caption"><strong>Rule Editor</strong> — block/allow patterns, regex support, live saves.</p>
-      </div>
-      <div class="gallery-item reveal">
-        <img src="assets/dashboard-overview.jpeg" alt="Overview tab with a live action tester and decision feed">
-        <p class="gallery-caption"><strong>Try an Action</strong> — test any command against the real pipeline before you trust it.</p>
-      </div>
-      <div class="gallery-item reveal">
-        <img src="assets/dashboard-model-settings.jpeg" alt="Model settings showing local Ollama model or API model choice">
-        <p class="gallery-caption"><strong>Model Settings</strong> — local by default; an API fallback is available if you choose it.</p>
-      </div>
-      <div class="gallery-item reveal">
-        <img src="assets/dashboard-mcp-servers.jpeg" alt="MCP servers registry showing connected guardrail servers">
-        <p class="gallery-caption"><strong>MCP Servers</strong> — register and monitor multiple guardrail instances.</p>
-      </div>
-      <div class="gallery-item reveal">
-        <img src="assets/dashboard-export.jpeg" alt="Export and share panel with one-click MCP client config copy">
-        <p class="gallery-caption"><strong>Export & Share</strong> — one click copies a ready-to-paste config for Claude Desktop, Cursor, or CodeX.</p>
-      </div>
+      <div class="gallery-item reveal"><img src="assets/dashboard-overview.jpeg" alt="Sentinel overview showing pipeline stages, action testing, and live decision feed" loading="lazy"><p class="gallery-caption"><strong>Overview</strong> - live pipeline stages, guardrail metrics, and the decision feed.</p></div>
+      <div class="gallery-item reveal"><img src="assets/dashboard-rules.jpeg" alt="Rule editor showing block and allow patterns with regex support" loading="lazy"><p class="gallery-caption"><strong>Rule Editor</strong> - configure hard-stop and known-safe patterns with live saves.</p></div>
+      <div class="gallery-item reveal"><img src="assets/dashboard-model-settings.jpeg" alt="Model settings showing local Ollama model or API model choice" loading="lazy"><p class="gallery-caption"><strong>Model Settings</strong> - use local Ollama by default or opt into an API provider.</p></div>
+      <div class="gallery-item reveal"><img src="assets/dashboard-mcp-servers.jpeg" alt="MCP server registry showing connected Sentinel guardrail server" loading="lazy"><p class="gallery-caption"><strong>MCP Servers</strong> - register compatible servers and see their connection status.</p></div>
+      <div class="gallery-item reveal"><img src="assets/dashboard-export.jpeg" alt="Export and share panel with downloadable configuration and MCP client config" loading="lazy"><p class="gallery-caption"><strong>Export &amp; Share</strong> - download configuration or copy MCP setup for Claude, Cursor, and CodeX.</p></div>
     </div>
   </section>
 
-  <!-- ============ TECH STACK ============ -->
+  <section class="get-started reveal">
+    <p class="section-eyebrow">Get started</p>
+    <h2>From install to protected workflow in five steps.</h2>
+    <ol class="steps-list">
+      <li><b>Clone Sentinel MCP.</b> Get the API, dashboard, and MCP server together.</li>
+      <li><b>Install dependencies.</b> Create a Python environment and install <code>requirements.txt</code>.</li>
+      <li><b>Start Sentinel.</b> Run <code>start.bat</code> on Windows or start the API and dashboard manually.</li>
+      <li><b>Connect your client.</b> Choose stdio for local tools or SSE for web-based IDEs.</li>
+      <li><b>Review every action.</b> Tune rules and model settings from the dashboard as your workflow evolves.</li>
+    </ol>
+  </section>
+
   <section class="stack reveal">
     <p class="section-eyebrow">Built with</p>
-    <div class="stack-grid">
-      <span>Python</span>
-      <span>FastAPI</span>
-      <span>scikit-learn</span>
-      <span>Ollama</span>
-      <span>SQLite</span>
-      <span>MCP</span>
-      <span>Vanilla JS</span>
-    </div>
-    <p class="stack-note">
-      No agent framework dependency. Local by default for the model stage —
-      an optional hosted API fallback exists for those who want it, but
-      nothing is required to leave your machine.
-    </p>
+    <div class="stack-grid"><span>Python</span><span>FastAPI</span><span>scikit-learn</span><span>Ollama</span><span>SQLite</span><span>MCP</span><span>Vanilla JS</span></div>
+    <p class="stack-note">No agent framework dependency. The local-first model path keeps action text on your machine, while optional API providers are available when you need them.</p>
   </section>
 
-  <!-- ============ CTA ============ -->
   <section class="cta-final reveal" id="about">
-    <h2>Clone it. Run it. Nothing to sign up for.</h2>
-    <p>That's the whole point.</p>
-    <a href="https://github.com/fncreator22/sentinel" class="btn-primary large">Get it on GitHub</a>
+    <h2>Build safer agent-driven development workflows.</h2>
+    <p>Rules first. Context when it matters. A clear decision every time.</p>
+    <a href="https://github.com/fncreator22/sentinel-mcp" class="btn-primary large">Get Sentinel MCP on GitHub</a>
   </section>
-
-  <footer class="site-footer">
-    <p>Built for a hackathon. More projects coming.</p>
-  </footer>
-
+  <footer class="site-footer"><p>Built by Sagar Mahajan.</p></footer>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="script.js"></script>
