@@ -111,13 +111,13 @@
 
     <section class="get-started reveal">
       <p class="section-eyebrow">Get started</p>
-      <h2>From install to protected workflow in five steps.</h2>
+      <h2>From install to protected workflow in five simple steps.</h2>
       <ol class="steps-list">
-        <li><b>Clone Sentinel MCP.</b> Get the API, dashboard, and MCP server together.</li>
-        <li><b>Install dependencies.</b> Create a Python environment and install <code>requirements.txt</code>.</li>
-        <li><b>Start Sentinel.</b> Run <code>start.bat</code> on Windows or start the API and dashboard manually.</li>
-        <li><b>Connect your client.</b> Choose stdio for local tools or SSE for web-based IDEs.</li>
-        <li><b>Review every action.</b> Tune rules and model settings from the dashboard as your workflow evolves.</li>
+        <li><b>Clone the repository.</b> <code>git clone https://github.com/fncreator22/sentinel-mcp.git</code></li>
+        <li><b>One-click launch.</b> Double-click <code>start.bat</code> (Windows) or run <code>python main.py</code> to launch the API (port 8000), SSE server (port 8002), and Live Dashboard (port 8080).</li>
+        <li><b>Open your client config.</b> Open <code>claude_desktop_config.json</code> or your IDE's MCP settings panel.</li>
+        <li><b>Paste the Sentinel MCP snippet.</b> Copy the pre-filled JSON or SSE URL (<code>http://localhost:8002/sse</code>) from the dashboard's <i>Connect</i> button.</li>
+        <li><b>Verify &amp; protect.</b> Relaunch your client and look for the blue <code>sentinel running</code> status badge. Every action is now protected!</li>
       </ol>
     </section>
 
