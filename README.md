@@ -4,9 +4,9 @@ The official landing page for [Sentinel MCP](https://github.com/fncreator22/sent
 
 ---
 
-## 🎬 Demo Video
+## 🎬 Demo
 
-<video src="assets/sentinel-demo.mp4" autoplay muted loop playsinline width="100%"></video>
+![Sentinel MCP demo — three-stage guardrail pipeline in action](assets/sentinel-demo.gif)
 
 ---
 
