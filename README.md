@@ -6,11 +6,7 @@ The official landing page for [Sentinel MCP](https://github.com/fncreator22/sent
 
 ## 🎬 Demo Video
 
-> A short walkthrough of the problem, the pipeline, and the dashboard.
-
-<video src="assets/sentinel-demo.mp4" controls width="100%"></video>
-
-> **Can't see the video inline?** [▶ Download and watch it directly](assets/sentinel-demo.mp4)
+<video src="assets/sentinel-demo.mp4" autoplay muted loop playsinline width="100%"></video>
 
 ---
 
