@@ -106,30 +106,4 @@ if (packet && stages.length === 3) {
     });
 }
 
-// ---------- 4. Video Player Handler ----------
-const introVideo = document.getElementById("intro-video");
-const videoPlayBtn = document.getElementById("video-play-btn");
 
-if (introVideo && videoPlayBtn) {
-  videoPlayBtn.addEventListener("click", () => {
-    if (introVideo.paused) {
-      introVideo.play();
-      videoPlayBtn.style.display = "none";
-    } else {
-      introVideo.pause();
-      videoPlayBtn.style.display = "flex";
-    }
-  });
-
-  introVideo.addEventListener("play", () => {
-    videoPlayBtn.style.display = "none";
-  });
-
-  introVideo.addEventListener("pause", () => {
-    videoPlayBtn.style.display = "flex";
-  });
-
-  introVideo.addEventListener("ended", () => {
-    videoPlayBtn.style.display = "flex";
-  });
-}
