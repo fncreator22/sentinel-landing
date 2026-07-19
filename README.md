@@ -1,69 +1,57 @@
-# Portfolio — Sentinel Project Page
+# Sentinel — Landing Page
 
-A static, single-page portfolio site. Project #1 is Sentinel (a guardrail
-agent for AI coding agents, built for a hackathon). Structured so more
-projects can be added later.
+The official landing page for [Sentinel MCP](https://github.com/fncreator22/sentinel-mcp) — a three-stage guardrail agent for LLM-powered coding assistants.
 
-## What's already built and tested
+---
 
-- Full page structure: hero, problem statement, pipeline visualization,
-  a 5-image dashboard feature gallery (rules editor, live action tester,
-  model settings, MCP server registry, export & share), tech stack, CTA.
-- A live GitHub stars badge in the nav (via shields.io — no backend needed).
-- GSAP animations, verified working in a real browser:
-  - Hero: a command types itself out, then gets stamped "BLOCKED"
-  - Scroll-triggered fade-ins on every section
-  - Signature animation: an action packet visibly travels through the
-    3-stage pipeline and gets tagged with a final verdict
-- Fully responsive (collapses to single column under 820px)
-- Respects `prefers-reduced-motion` (animations disabled for users who need that)
-- Visible keyboard focus states for accessibility
+## 🎬 Demo Video
 
-All of the above was rendered and screenshotted in a real headless browser
-to confirm it actually works — this isn't unverified code.
+> A short walkthrough of the problem, the pipeline, and the dashboard.
 
-## What YOU (or your agent) need to do before this is ready to publish
+<video src="assets/sentinel-demo.mp4" controls width="100%"></video>
 
-1. **Replace placeholder links** — search for `YOUR-USERNAME` in `index.html`
-   (appears 5 times, including in the stars badge URL) and replace with your
-   actual GitHub username/repo.
-2. **Replace the nav logo** — `<div class="logo">◆ your name</div>` in
-   `index.html` — put your actual name or brand.
-3. **Note on the stars badge**: it uses `img.shields.io`, a public badge
-   service — it'll show your repo's real star count automatically once the
-   URL points at your actual repo, no backend or token needed. GitHub repo
-   *views* are intentionally not shown here — that data requires repo-owner
-   authentication and isn't safely exposable on a static public page.
-3. **Decide on hosting** — this is a static site, so any of these work with
-   zero backend:
-   - GitHub Pages (free, easiest — just enable Pages on this repo's settings,
-     pointing at the root or a `/docs` folder)
-   - Vercel or Netlify (free tier, drag-and-drop deploy)
-4. **Optional**: add a real demo video/GIF of the dashboard in action instead
-   of (or alongside) the static screenshot in `assets/dashboard-screenshot.png`.
-5. **Optional, for future projects**: duplicate the `.pipeline`-style section
-   pattern for a second project, or turn the hero eyebrow ("Project 01") into
-   an actual multi-project index page if you want a true portfolio homepage
-   listing several projects instead of one deep-dive page.
+> **Can't see the video inline?** [▶ Download and watch it directly](assets/sentinel-demo.mp4)
+
+---
+
+## What's on the page
+
+- **Hero** — headline, animated terminal blocking a dangerous command, and CTA buttons
+- **Intro video** — compressed `sentinel-demo.mp4` (4.2 MB, faststart-optimised for smooth streaming)
+- **Problem section** — explains the risk of autonomous agent execution with live verdict examples
+- **Pipeline visualization** — animated packet traveling through the 3 stages with GSAP ScrollTrigger
+- **Feature grid** — 8 guardrail features including Rules Engine, Classifier, LLM Reviewer, SSE support, Audit Log
+- **Dashboard gallery** — 5 screenshots: Overview, Rule Editor, Model Settings, MCP Servers, Export & Share
+- **Get started steps** — 5-step install guide
+- **Tech stack** — Python · FastAPI · scikit-learn · Ollama · SQLite · MCP · Vanilla JS
+- **Final CTA** — links to the main GitHub repository
+
+Fully responsive, GSAP-animated, and respects `prefers-reduced-motion`.
+
+---
 
 ## File structure
 
 ```
 portfolio/
-├── index.html      # all content and structure
-├── style.css        # design tokens + all styling
-├── script.js         # GSAP animation logic
+├── index.html                          # all content and structure
+├── style.css                           # design tokens + all styling
+├── script.js                           # GSAP animation logic
 └── assets/
-    └── dashboard-screenshot.png   # real screenshot of the Sentinel dashboard
+    ├── sentinel-demo.mp4               # compressed demo video (4.2 MB, faststart)
+    ├── dashboard-overview.png          # Sentinel dashboard screenshot
+    ├── localhost_8080_ (1).png         # Rule editor screenshot
+    ├── localhost_8080_ (2).png         # Model settings screenshot
+    ├── localhost_8080_ (3).png         # Export & Share screenshot
+    └── Screenshot 2026-07-19 004943.png   # MCP Servers screenshot
 ```
 
-## Notes on the animation approach (for whoever edits this next)
+---
 
-- GSAP + ScrollTrigger are loaded via CDN (cdnjs) in `index.html` — no build
-  step, no npm install required to just open and view the page.
-- The pipeline animation (`script.js`) calculates packet position by reading
-  the actual DOM positions of the stage cards at animation time — if you
-  change the pipeline section's HTML structure or number of stages, you'll
-  need to update the `stages` selector and the timeline logic accordingly.
-- Colors are defined once as CSS custom properties in `style.css` (`:root`)
-  — change the palette there, not by hunting through individual rules.
+## Notes
+
+- GSAP + ScrollTrigger are loaded via CDN — no build step required
+- Video is H.264 MP4 with `+faststart` MOOV atom for instant browser streaming
+- Gallery images use `loading="lazy"` for performance
+- Colors are defined as CSS custom properties in `:root` — change palette there
+
